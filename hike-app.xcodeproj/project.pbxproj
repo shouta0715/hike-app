@@ -6,8 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		E3FC31802D211F34006E9EB8 /* .gitignore in Sources */ = {isa = PBXBuildFile; fileRef = E3FC317F2D211F32006E9EB8 /* .gitignore */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		E3FC316E2D211E7C006E9EB8 /* hike-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hike-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3FC317F2D211F32006E9EB8 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -32,6 +37,7 @@
 		E3FC31652D211E7B006E9EB8 = {
 			isa = PBXGroup;
 			children = (
+				E3FC317F2D211F32006E9EB8 /* .gitignore */,
 				E3FC31702D211E7C006E9EB8 /* hike-app */,
 				E3FC316F2D211E7C006E9EB8 /* Products */,
 			);
@@ -119,6 +125,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3FC31802D211F34006E9EB8 /* .gitignore in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
