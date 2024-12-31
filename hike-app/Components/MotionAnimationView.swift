@@ -52,7 +52,7 @@ struct MotionAnimationView: View {
                         y: ramdomCoordinate()
                     )
                     .scaleEffect(isAnimating ? ramdomScale() : 1)
-                    .onAppear(perform: {
+                    .onAppear {
                         withAnimation(
                             .interpolatingSpring(stiffness: 0.25, damping: 0.25)
                             .repeatForever()
@@ -61,7 +61,7 @@ struct MotionAnimationView: View {
                         ){
                             isAnimating = true
                         }
-                    })
+                    }
                 
             }
         } //: ZStack
