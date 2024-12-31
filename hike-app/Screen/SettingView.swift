@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ListItem {
+private struct ListItem {
     var label: String
     var icon: String
     var content: String? = nil
@@ -16,7 +16,7 @@ struct ListItem {
     var linkDestination: String? = nil
 }
 
-let ListItemData: [ListItem] = [
+private let ListItemData: [ListItem] = [
     ListItem(label: "Application", icon: "apps.iphone", content: "HIKE", color: .blue),
     ListItem(label: "Compatibility", icon: "info.circle", content: "iOS, iPadOS", color: .red),
     ListItem(label: "Technology", icon: "swift", content: "Swift", color: .orange),
@@ -26,7 +26,43 @@ let ListItemData: [ListItem] = [
     ListItem(label: "Website", icon: "globe", content: nil, color: .indigo, linkLabel: "kurahashi.me", linkDestination: "https://kurahashi.me")
 ]
 
+private struct AlternateAppIcon {
+    var icon: String
+    var preview: String
+}
+    
+
 struct SettingView: View {
+    
+    // MARK: - PROPARTIES
+    private let alternateAppIcons:[AlternateAppIcon] = [
+        AlternateAppIcon(
+            icon: "AppIcon-MagnifyingGlass",
+            preview: "AppIcon-MagnifyingGlass-Preview"
+        ),
+        AlternateAppIcon(
+            icon: "AppIcon-Map",
+            preview: "AppIcon-Map-Preview"
+        ),
+        AlternateAppIcon(
+            icon: "AppIcon-Mushroom",
+            preview: "AppIcon-Mushroom-Preview"
+        ),
+        AlternateAppIcon(
+            icon: "AppIcon-Camera",
+            preview: "AppIcon-Camera-Preview"
+        ),
+        AlternateAppIcon(
+            icon: "AppIcon-Backpack",
+            preview: "AppIcon-Backpack-Preview"
+            ),
+        AlternateAppIcon(
+            icon: "AppIcon-Campfire",
+            preview: "AppIcon-Campfire-Preview"
+            ),
+    ]
+    
+    
     var body: some View {
         List {
             
@@ -78,7 +114,51 @@ struct SettingView: View {
             .listRowSeparator(.hidden)
                 
             
-        // MARK: - SECTION: ICONS
+        // MARK: - SECTION: ICON
+            
+            Section(header: Text("Alternate Icons")) {
+                ScrollView(.horizontal,showsIndicators: false){
+                    HStack(spacing: 12) {
+                        ForEach(alternateAppIcons.indices, id: \.self) { index in
+                            let item = alternateAppIcons[index]
+                            Button {
+                                print("Tapped: \(item.icon)")
+                                
+                                UIApplication.shared
+                                    .setAlternateIconName(item.icon) {error in
+                                    if error != nil {
+                                        print(
+                                            "Failed to change the app icon.\(String(describing: error?.localizedDescription))"
+                                        )
+                                    } else {
+                                        print(
+                                            "Succeeded in changing the app icon."
+                                        )
+                                    }
+                                        
+                                }
+                                
+                            } label: {
+                                Image(item.preview)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 80,height: 80)
+                                    .cornerRadius(16)
+                            }
+                            .buttonStyle(.borderless)
+                        }
+                    }
+                } //: SCROLLVIEW
+                .padding(.top,12)
+                Text("Choose your favorite app icon from the collection above.")
+                    .frame(minWidth: 0,maxWidth: .infinity)
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(.secondary)
+                    .font(.footnote)
+                    .padding(.bottom,12)
+                    
+            }
+            .listRowSeparator(.hidden)
             
         //  MARK: - SECTION: ABOUT
             Section(
