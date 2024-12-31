@@ -7,6 +7,25 @@
 
 import SwiftUI
 
+struct ListItem {
+    var label: String
+    var icon: String
+    var content: String? = nil
+    var color: Color
+    var linkLabel: String? = nil
+    var linkDestination: String? = nil
+}
+
+let ListItemData: [ListItem] = [
+    ListItem(label: "Application", icon: "apps.iphone", content: "HIKE", color: .blue),
+    ListItem(label: "Compatibility", icon: "info.circle", content: "iOS, iPadOS", color: .red),
+    ListItem(label: "Technology", icon: "swift", content: "Swift", color: .orange),
+    ListItem(label: "Version", icon: "gear", content: "1.0", color: .purple),
+    ListItem(label: "Developer", icon: "ellipsis.curlybraces", content: "John Doe", color: .mint),
+    ListItem(label: "Designer", icon: "paintpalette", content: "Robert Petras", color: .pink),
+    ListItem(label: "Website", icon: "globe", content: nil, color: .indigo, linkLabel: "kurahashi.me", linkDestination: "https://kurahashi.me")
+]
+
 struct SettingView: View {
     var body: some View {
         List {
@@ -62,6 +81,28 @@ struct SettingView: View {
         // MARK: - SECTION: ICONS
             
         //  MARK: - SECTION: ABOUT
+            Section(
+                header: Text("ABOUT THE APP"),
+                footer: HStack{
+                    Spacer()
+                    Text("Copyright © All Rights Reserved")
+                    Spacer()
+                }
+                    .padding(.vertical,8)
+            ) {
+                
+                ForEach(ListItemData, id: \.label) { item in
+                    CustomListRowView(
+                        rowLabel: item.label,
+                        rowIcon: item.icon,
+                        rowContent: item.content,
+                        rowColor: item.color,
+                        rowLinkLabel: item.linkLabel,
+                        rowLinkDestination: item.linkDestination
+                    )
+                }
+
+            }
             
             
         } //: LIST
